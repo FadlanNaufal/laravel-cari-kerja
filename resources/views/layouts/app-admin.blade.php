@@ -107,9 +107,14 @@
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
-                <i class="fas fa-sign-out-alt"></i> Logout
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
             </div>
           </li>
         </ul>
@@ -127,6 +132,14 @@
               <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a class="nav-link" href="{{route('dashboard')}}"><i class="fas fa-home "></i> <span>Dashboard</span></a></li>
               <li class="menu-header">Data Master</li>
               <li class="{{ (request()->is('adminemployeer*')) ? 'active' : '' }}"><a class="nav-link" href="{{route('adminemployeer.index')}}"><i class="fas fa-users "></i> <span>Employeer</span></a></li>
+              <li class="{{ (request()->is('adminseeker*')) ? 'active' : '' }}"><a class="nav-link" href="{{route
+              ('adminseeker.index')}}"><i class="fas fa-briefcase "></i> <span>Job Seeker</span></a></li>
+              <li class="{{ (request()->is('category*')) ? 'active' : '' }}"><a class="nav-link" href="{{route
+              ('category.index')}}"><i class="fas fa-sort "></i> <span>Category</span></a></li>
+              <li class="{{ (request()->is('job*')) ? 'active' : '' }}"><a class="nav-link" href="{{route
+              ('job.index')}}"><i class="fas fa-paper-plane "></i> <span>Posted Job</span></a></li>
+              <li class="{{ (request()->is('job*')) ? 'active' : '' }}"><a class="nav-link" href="{{route
+              ('adminapplicant.index')}}"><i class="fas fa-archive"></i> <span>Job Applicant</span></a></li>
             </ul>
         </aside>
       </div>

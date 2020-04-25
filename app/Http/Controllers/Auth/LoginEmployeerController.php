@@ -41,7 +41,7 @@ class LoginEmployeerController extends Controller
     }
 
     public function showEmployeerLoginForm(){
-        return view('auth.login-seeker');
+        return view('auth.login-employeer');
     }
 
     public function employeerLogin(Request $request){

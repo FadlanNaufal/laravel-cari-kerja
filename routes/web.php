@@ -30,8 +30,14 @@ Route::view('/', 'welcome');
         return view('home');
     })->middleware('auth')->name('dashboard');
     Route::get('/employeer','EmployeerController@index')->name('employeer');
-    Route::get('/seeker', 'SeekerController@index')->name('seeker');
+    // Route::get('/seeker', 'SeekerController@index')->name('seeker');
 
     Route::resources([
-        'adminemployeer' => 'AdminEmployeerController'
+        'adminemployeer' => 'AdminEmployeerController',
+        'adminapplicant' => 'AdminApplicantController',
+        'adminseeker' => 'AdminSeekerController',
+        'job'=>'JobsController',
+        'category' => 'CategoryController',
+        'seeker' => 'SeekerController',
+        'applicant' => 'ApplicantController'
     ]);

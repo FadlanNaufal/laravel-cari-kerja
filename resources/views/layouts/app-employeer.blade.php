@@ -113,7 +113,7 @@
                                  <i class="fas fa-sign-out-alt"></i> Logout
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
+                                          @csrf
                                     </form>
             </div>
           </li>
@@ -131,7 +131,10 @@
               <li class="menu-header">Dashboard</li>
               <li class="{{ (request()->is('employeer*')) ? 'active' : '' }}"><a class="nav-link" href="{{route('employeer')}}"><i class="fas fa-home "></i> <span>Dashboard</span></a></li>
               <li class="menu-header">Data Master</li>
-              <li class=""><a class="nav-link" href=""><i class="fas fa-door-open "></i> <span>Room</span></a></li>
+              <li class="{{ (request()->is('job*')) ? 'active' : '' }}"><a class="nav-link" href="{{route
+              ('job.index')}}"><i class="fas fa-paper-plane "></i> <span>Posted Job</span></a></li>
+              <li class="{{ (request()->is('applicant*')) ? 'active' : '' }}"><a class="nav-link" href="{{route
+              ('applicant.index')}}"><i class="fas fa-archive"></i> <span>Job Applicant</span></a></li>
             </ul>
         </aside>
       </div>

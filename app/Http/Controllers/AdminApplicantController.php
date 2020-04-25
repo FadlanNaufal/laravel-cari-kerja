@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Employeer;
-use App\Jobs;
 use Illuminate\Http\Request;
-use Auth;
+use App\Applicant;
+use DB;
 
-class EmployeerController extends Controller
+class AdminApplicantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class EmployeerController extends Controller
      */
     public function index()
     {
-        return view('pages.employeer.index',[
-            'employeer' => Auth::guard('employeer')->user(),
-            'job_total' => Jobs::where('id',Auth::guard('employeer')->user()->id)->count()
+        return view('pages.admin.applicant.index',[
+            'app' => Applicant::all()
         ]);
     }
 
@@ -46,10 +44,10 @@ class EmployeerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Employeer  $employeer
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Employeer $employeer)
+    public function show($id)
     {
         //
     }
@@ -57,10 +55,10 @@ class EmployeerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Employeer  $employeer
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employeer $employeer)
+    public function edit($id)
     {
         //
     }
@@ -69,21 +67,26 @@ class EmployeerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Employeer  $employeer
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employeer $employeer)
+    public function update(Request $request, $id)
     {
-        //
+        $app = Applicant::where('id',$id)->first();
+        $app->update([
+            'status' => 'approved'
+        ]);
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Employeer  $employeer
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employeer $employeer)
+    public function destroy($id)
     {
         //
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Seeker;
+use App\Jobs;
 use Illuminate\Http\Request;
 
 class SeekerController extends Controller
@@ -16,7 +17,8 @@ class SeekerController extends Controller
     public function index()
     {
         return view('pages.seeker.index',[
-            'seeker'=>Auth::guard('seeker')->user()
+            'seeker'=>Auth::guard('seeker')->user(),
+            'jobs' => Jobs::all()->take(3)
         ]);
     }
 
@@ -36,9 +38,9 @@ class SeekerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        
     }
 
     /**
@@ -47,9 +49,11 @@ class SeekerController extends Controller
      * @param  \App\Seeker  $seeker
      * @return \Illuminate\Http\Response
      */
-    public function show(Seeker $seeker)
+    public function show($id)
     {
-        //
+        $jobs = Jobs::with('Admin')->where('id',$id)->first();
+        return $jobs;
+        return view('pages.seeker.job.detail',compact());
     }
 
     /**
